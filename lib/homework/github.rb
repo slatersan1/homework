@@ -4,9 +4,8 @@ module Homework
     base_uri "https://api.github.com"
 
     def initialize
-      @auth_token = ""
       @headers = {
-        "Authorization" => "token #{@auth_token}",
+        "Authorization" => "token #{ENV["OAUTH_TOKEN_GH"]}",
         "User-Agent"    => "HTTParty"
       }
     end
@@ -39,8 +38,8 @@ module Homework
     end
 
     def comment_issue(username, repo, number, comment)
-      Github.patch("/repos/#{username}/#{repo}/issues/#{number}/comments", headers: @headers
-         body: { "body" => "#{comment}" }.to_json )
+      Github.patch("/repos/#{username}/#{repo}/issues/#{number}/comments", headers: @headers,
+         body: { "body" => comment }.to_json )
     end
   end
 end
