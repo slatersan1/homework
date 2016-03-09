@@ -4,7 +4,7 @@ module Homework
     base_uri "https://api.github.com"
 
     def initialize
-      @auth_token = "a8ba164f9526540607f9a91b0625120ff5352f3e"
+      @auth_token = "b7497ed0f67e3bcc79e9310bd32a4b17ac8f3039"
       @headers = {
         "Authorization" => "token #{@auth_token}",
         "User-Agent"    => "HTTParty"
@@ -27,6 +27,20 @@ module Homework
 
     def list_team_members(team_id)
       Github.get("/teams/#{team_id}/members", headers: @headers)
+    end
+    
+    def list_issues(username, repo)
+      Github.get("/repos/#{username}/#{repo}/issues", headers: @headers).to_json
+    end
+
+    def close_issue(username, repo, number)
+      Github.patch("/repos/#{username}/#{repo}/issues/#{number}", headers: @headers,
+       body: => { state: "closed" }.to_json )
+    end
+
+    def comment_issue(username, repo, number)
+      Github.patch("/repos/#{username}/#{repo}/issues/#{number}", headers: @headers
+         body: => { body: "comment"}.to_json )
     end
   end
 end

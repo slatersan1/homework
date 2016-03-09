@@ -1,8 +1,14 @@
 # Homework
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/homework`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a gem designed to allow you run a number of processes involving the GitHub API. 
+The functions include:
+	
+	1. Get full user info
+	2. List teams within an organization
+	3. List members of an organization by team name
+	4. List issues assigned to a user
+	5. Close issues assigend to a user
+	6. Comment on issues
 
 ## Installation
 
@@ -22,7 +28,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+	1. Initialize a homework module with the following script: github = Homework::Github.new
+	2. Call the appropriate method using: Github.("HTTP Verb" i.e. PATCH)("/some/route", headers: @headers, body: { option: "value" }.to_json)
 
 ## Development
 
